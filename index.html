@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🚬 شاشة الأراجيل • تل السنديان</title>
+    <link rel="icon" href="https://iili.io/qfhk5Pt.png">
+    <link rel="apple-touch-icon" href="https://iili.io/qfhk5Pt.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* جميع الأنماط مطابقة تماماً لـ cash.html (الألوان الخضراء) */
+        :root {
+            --forest-green-light: #3f8b3a;
+            --forest-green-bright: #5cb85c;
+            --olive-green-bright: #8bc34a;
+            --sandy-beige: #F5E6D3;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --text-dark: #1e3b1a;
+            --shadow-soft: rgba(60, 120, 50, 0.35);
+            --shadow-intense: rgba(45, 90, 39, 0.8);
+            --gradient-forest-luxury: linear-gradient(145deg, #2b5e25, #4e8d42, #7fb073);
+            --gradient-white-luxury: linear-gradient(145deg, #FFFFFF, #F0F2F5, #E5E8EB);
+            --header-overlay: rgba(30, 70, 20, 0.55);
+            --card-radius: 32px;
+            --btn-radius: 60px;
+            --modal-radius: 45px;
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow-elevation: 0 25px 45px -10px rgba(30, 70, 10, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+
+            --forest-green: #2D5A27;
+            --olive-green: #4A7B3D;
+            --clay-brown: #8B5A2B;
+            --cream-white: #FFF9F0;
+            --status-new: #FF6B6B;
+            --status-preparing: #4A7B3D;
+            --status-completed: #8B5A2B;
+            --shadow-sm: 0 8px 20px rgba(0, 20, 0, 0.08);
+            --shadow-md: 0 15px 30px rgba(0, 30, 0, 0.15);
+            --shadow-lg: 0 25px 50px rgba(0, 20, 0, 0.25);
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --radius-xl: 40px;
+            --transition-fast: 0.2s ease;
+
+            --black-soft: #1a1a1a;
+            --green-bright: #4CAF50;
+            --green-rich: #2E7D32;
+            --shadow-green: rgba(76, 175, 80, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #386f2e, #1f4a18);
+            color: var(--text-dark);
+            direction: rtl;
+            min-height: 100vh;
+            position: relative;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        #animated-forest-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1e4a1a, #3d7534, #68a355);
+            z-index: -2;
+            overflow: hidden;
+            box-shadow: inset 0 0 150px rgba(255, 255, 255, 0.3);
+        }
+
+        .startup-logo {
+            width: clamp(120px, 40vw, 170px);
+            height: clamp(120px, 40vw, 170px);
+            background: var(--black-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 5px solid var(--green-bright);
+            box-shadow: 0 25px 45px -10px rgba(0,0,0,0.9), 0 0 0 2px var(--green-rich) inset, 0 0 0 10px rgba(76,175,80,0.2);
+            animation: gentlePulse 2.5s infinite alternate;
+            overflow: hidden;
+        }
+
+        .startup-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes gentlePulse {
+            0% { transform: scale(1); box-shadow: 0 25px 45px -10px rgba(0,0,0,0.9), 0 0 0 2px var(--green-rich) inset, 0 0 0 5px rgba(76,175,80,0.2); }
+            100% { transform: scale(1.02); box-shadow: 0 25px 45px -10px rgba(0,0,0,0.9), 0 0 0 2px var(--green-rich) inset, 0 0 0 15px rgba(76,175,80,0.1); }
+        }
+
+        .header-logo-frame {
+            width: 45px;
+            height: 45px;
+            background: var(--black-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--green-bright);
+            box-shadow: 0 25px 45px -10px rgba(0,0,0,0.9), 0 0 0 2px var(--green-rich) inset, 0 0 0 5px rgba(76,175,80,0.15);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .header-logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #bg-pattern {
+            display: none;
+        }
+
+        #startup-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(145deg, #1f441a, var(--forest-green));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.6s var(--transition-smooth);
+            backdrop-filter: blur(4px);
+            padding: 16px;
+        }
+
+        #startup-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .startup-title {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            color: var(--cream-white);
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .activate-btn {
+            background: var(--cream-white);
+            color: var(--forest-green);
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 3px solid var(--sandy-beige);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 90%;
+            white-space: nowrap;
+        }
+
+        .activate-btn:hover {
+            transform: scale(1.02) translateY(-2px);
+            background: var(--sandy-beige);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+        }
+
+        .activate-btn i {
+            font-size: 1.4rem;
+        }
+
+        #main-content {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 12px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kitchen-header {
+            background: rgba(255, 249, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 2px solid var(--clay-brown);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .header-logo h1 {
+            color: var(--forest-green);
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .stats {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, var(--forest-green), #1f441a);
+            padding: 10px 16px;
+            border-radius: 25px;
+            color: var(--cream-white);
+            text-align: center;
+            border: 2px solid var(--sandy-beige);
+            box-shadow: var(--shadow-sm);
+            min-width: 100px;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .stat-card div:last-child {
+            font-size: 0.8rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--forest-green);
+            color: var(--cream-white);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid var(--sandy-beige);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .control-btn:hover {
+            transform: rotate(180deg) scale(1.05);
+            background: var(--clay-brown);
+            border-color: var(--cream-white);
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .kitchen-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .kitchen-tab {
+            background: var(--cream-white);
+            border: 2px solid var(--forest-green);
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--forest-green);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+            box-shadow: var(--shadow-sm);
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+
+        .kitchen-tab.active {
+            background: var(--forest-green);
+            color: var(--cream-white);
+            border-color: var(--sandy-beige);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kitchen-tab .badge {
+            background: var(--clay-brown);
+            color: var(--cream-white);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .kitchen-tab.active .badge {
+            background: var(--cream-white);
+            color: var(--forest-green);
+        }
+
+        .orders-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .order-card {
+            background: var(--cream-white);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 2px solid var(--clay-brown);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            animation: cardFade 0.4s;
+        }
+
+        .order-card.hidden-by-tab {
+            display: none !important;
+        }
+
+        .order-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--forest-green);
+        }
+
+        @keyframes cardFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .order-header {
+            background: linear-gradient(145deg, var(--forest-green), #1f441a);
+            color: var(--cream-white);
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-id {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .order-time {
+            background: rgba(255,255,255,0.15);
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        .order-body {
+            padding: 16px;
+        }
+
+        .table-info {
+            background: var(--sandy-beige);
+            padding: 12px;
+            border-radius: 18px;
+            margin-bottom: 16px;
+            text-align: center;
+            border: 2px solid var(--clay-brown);
+        }
+
+        .table-number-large {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--forest-green);
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .table-number-large i {
+            font-size: 1.8rem;
+            color: var(--clay-brown);
+        }
+
+        .order-items {
+            background: rgba(45,90,39,0.03);
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(45,90,39,0.2);
+            font-weight: 600;
+            gap: 8px;
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 2;
+        }
+
+        .item-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--forest-green);
+        }
+
+        .item-price-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--clay-brown);
+            flex-wrap: wrap;
+        }
+
+        .item-unit-price {
+            background: rgba(139,90,43,0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .item-separator {
+            color: var(--forest-green);
+            font-weight: 700;
+        }
+
+        .item-quantity {
+            background: var(--forest-green);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .item-total {
+            font-weight: 900;
+            color: var(--forest-green);
+            background: rgba(45,90,39,0.1);
+            padding: 4px 10px;
+            border-radius: 18px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .order-total {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--forest-green);
+            text-align: left;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid var(--sandy-beige);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .status-preparing {
+            background: rgba(74,123,61,0.15);
+            color: var(--forest-green);
+            border: 2px solid var(--forest-green);
+        }
+
+        .status-completed {
+            background: rgba(139,90,43,0.15);
+            color: var(--clay-brown);
+            border: 2px solid var(--clay-brown);
+        }
+
+        .order-notes {
+            background: #fff3cd;
+            border-right: 6px solid #856404;
+            padding: 12px 14px;
+            border-radius: 14px;
+            margin: 12px 0 5px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .order-footer {
+            padding: 16px;
+            background: var(--sandy-beige);
+            display: flex;
+            gap: 10px;
+            border-top: 2px solid var(--clay-brown);
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            flex: 1 1 auto;
+            padding: 12px 8px;
+            border: none;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            min-width: 90px;
+        }
+
+        .btn-done {
+            background: var(--forest-green);
+        }
+
+        .btn-print {
+            background: var(--clay-brown);
+        }
+
+        .btn-delete {
+            background: #b33;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+            border-color: var(--cream-white);
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 16px;
+            background: var(--cream-white);
+            border-radius: 30px;
+            border: 3px solid var(--clay-brown);
+            box-shadow: var(--shadow-md);
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: var(--forest-green);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.6rem;
+            color: var(--forest-green);
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .order-popup {
+            background: var(--cream-white);
+            border-radius: 40px;
+            width: 100%;
+            max-width: 360px;
+            border: 3px solid var(--clay-brown);
+            box-shadow: var(--shadow-lg), 0 0 0 8px rgba(245,230,211,0.3);
+            animation: popIn 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.2);
+            overflow: hidden;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .popup-header {
+            background: linear-gradient(145deg, var(--forest-green), #1a3e16);
+            color: white;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .popup-header-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .popup-header-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            border: 2px solid var(--sandy-beige);
+        }
+
+        .popup-header-text h2 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .popup-header-text p {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .popup-close {
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-close:hover {
+            background: rgba(255,255,255,0.4);
+            transform: rotate(90deg);
+        }
+
+        .popup-body {
+            padding: 20px;
+        }
+
+        .order-id-badge {
+            background: var(--sandy-beige);
+            border: 2px dashed var(--clay-brown);
+            border-radius: 50px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+
+        .order-id-badge i {
+            color: var(--forest-green);
+            font-size: 1rem;
+        }
+
+        .order-id-badge span {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--forest-green);
+        }
+
+        .popup-table-card {
+            background: linear-gradient(145deg, var(--forest-green), #1f441a);
+            color: white;
+            padding: 24px 16px;
+            border-radius: 32px;
+            text-align: center;
+            margin-bottom: 16px;
+            border: 2px solid var(--sandy-beige);
+        }
+
+        .popup-table-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .popup-table-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .popup-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .info-card {
+            background: var(--sandy-beige);
+            padding: 12px 6px;
+            border-radius: 22px;
+            text-align: center;
+            border: 2px solid var(--clay-brown);
+        }
+
+        .info-icon {
+            color: var(--forest-green);
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .info-label {
+            font-size: 0.65rem;
+            color: var(--clay-brown);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--forest-green);
+        }
+
+        .popup-total-card {
+            background: linear-gradient(145deg, var(--forest-green), #1f441a);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            border: 2px solid var(--sandy-beige);
+        }
+
+        .popup-timer {
+            background: var(--sandy-beige);
+            border-radius: 28px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 2px solid var(--clay-brown);
+        }
+
+        .timer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            color: var(--forest-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .timer-display {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--forest-green);
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        .timer-progress {
+            height: 8px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--forest-green);
+            width: 0%;
+            transition: width 1s linear;
+            border-radius: 20px;
+        }
+
+        .receive-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(145deg, var(--forest-green), #1a3e16);
+            color: white;
+            border: none;
+            border-radius: 36px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            border: 2px solid var(--sandy-beige);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .receive-btn:active {
+            transform: scale(0.97);
+        }
+
+        .receive-btn:hover {
+            background: #1f5a1a;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+        }
+
+        .notification {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--forest-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            z-index: 10001;
+            border: 2px solid var(--sandy-beige);
+            animation: slideDown 0.3s;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 90%;
+            max-width: 340px;
+            justify-content: center;
+        }
+
+        @keyframes slideDown {
+            from { transform: translate(-50%, -100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        @media (max-width: 380px) {
+            .header-logo h1 {
+                font-size: 1.1rem;
+            }
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            .kitchen-tab {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            .order-id {
+                font-size: 1rem;
+            }
+            .table-number-large {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="animated-forest-bg"></div>
+
+    <div id="startup-screen">
+        <div class="startup-logo">
+            <img src="https://iili.io/qfhk5Pt.png" alt="شعار تل السنديان">
+        </div>
+        <div class="startup-title">🚬 الأراجيل</div>
+        <button id="activateBtn" class="activate-btn">
+            <i class="fas fa-smoking"></i>
+            تشغيل شاشة الأراجيل
+        </button>
+    </div>
+
+    <div id="main-content">
+        <header class="kitchen-header">
+            <div class="header-logo">
+                <div class="header-logo-frame">
+                    <img src="https://iili.io/qfhk5Pt.png" alt="شعار تل السنديان">
+                </div>
+                <h1>🚬 شاشة الأراجيل • تل السنديان</h1>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="preparingCount">0</div>
+                    <div>قيد التحضير</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedCount">0</div>
+                    <div>مكتمل</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" id="soundToggle">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="control-btn" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="kitchen-tabs">
+            <button class="kitchen-tab active" data-status="preparing">
+                <i class="fas fa-smoking"></i>
+                قيد التحضير
+                <span class="badge" id="preparingBadge">0</span>
+            </button>
+            <button class="kitchen-tab" data-status="completed">
+                <i class="fas fa-check-double"></i>
+                المكتملة
+                <span class="badge" id="completedBadge">0</span>
+            </button>
+        </div>
+
+        <div id="ordersContainer" class="orders-grid"></div>
+    </div>
+
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="order-popup">
+            <div class="popup-header">
+                <div class="popup-header-content">
+                    <div class="popup-header-icon">
+                        <i class="fas fa-smoking"></i>
+                    </div>
+                    <div class="popup-header-text">
+                        <h2>طلب أرغيلة جديد!</h2>
+                        <p>يحتاج تحضير فوري</p>
+                    </div>
+                </div>
+                <button class="popup-close" id="closePopupBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="popup-body">
+                <div class="order-id-badge">
+                    <i class="fas fa-receipt"></i>
+                    <span id="popupOrderId">TSN-0001</span>
+                </div>
+                
+                <div class="popup-table-card">
+                    <div class="popup-table-number" id="popupTableNumber">5</div>
+                    <div class="popup-table-label">رقم الطاولة</div>
+                </div>
+
+                <div class="popup-info-grid">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div class="info-label">الوقت</div>
+                        <div class="info-value" id="popupTime">-</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-calculator"></i></div>
+                        <div class="info-label">الإجمالي</div>
+                        <div class="info-value" id="popupTotal">0 د.أ</div>
+                    </div>
+                </div>
+
+                <div class="popup-timer">
+                    <div class="timer-header">
+                        <span><i class="fas fa-hourglass-half"></i> وقت الاستلام</span>
+                        <span class="timer-display" id="timerDisplay">01:00</span>
+                    </div>
+                    <div class="timer-progress">
+                        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <button id="receiveOrderBtn" class="receive-btn">
+                    <i class="fas fa-check-circle"></i>
+                    تم الاستلام
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="notificationSound" preload="auto" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ======================== الإعدادات المحسنة (تحديث كل 5 ثوان) ========================
+        const CONFIG = {
+            API_URL: 'https://script.google.com/macros/s/AKfycbzU7pp0Ul8KNDT4iEd7kGFxNrXYzX4B4zfdYANjE59ABvMq1vIKlmEM4gAOipY47Zeoiw/exec',
+            RESTAURANT: { name: 'تل السنديان', code: 'TSN' },
+            REFRESH_INTERVAL: 5000,               // 5 ثوانٍ
+            MAX_REFRESH_INTERVAL: 60000,           // دقيقة كحد أقصى عند الفشل
+            CLEANUP_INTERVAL: 24 * 60 * 60 * 1000, // مرة يومياً (24 ساعة)
+            OLD_DAYS_THRESHOLD: 7,                  // حذف المكتملة بعد 7 أيام
+            FETCH_TIMEOUT: 8000,
+            MAX_RETRIES: 3,
+            CACHE_KEY: 'arageel_orders_backup',     // مفتاح مختلف عن الكاشير
+        };
+
+        // ======================== قائمة أصناف الأراجيل الشاملة جداً ========================
+        const ARAGEEL_KEYWORDS = [
+            // الأساسيات
+            'أرغيلة', 'ارغيلة', 'ارجيله', 'أرجيله', 'أراجيل', 'اراجيل', 'ارجيل', 
+            'شيشة', 'شيشا', 'سيشا', 'شيشه',
+            // المكونات والأنواع
+            'معسل', 'معسلات', 'فحم', 'جوز', 'مبرد', 'ماسكه', 'ماسكة', 'بخور',
+            // إكسسوارات
+            'كولا', 'قلب', 'سيليكون', 'قرص', 'صفيحة', 'حريم', 'خرطوم',
+            // نكهات شائعة (للتأكيد)
+            'تفاحتين', 'بستكي', 'معدل', 'جنكل', 'كاكاو', 'لوز', 'كريمة'
+        ];
+
+        // ======================== IndexedDB Wrapper ========================
+        const DB = {
+            name: 'TelAlSindianDB',
+            version: 1,
+            store: 'arageel_orders',                // مخزن منفصل للأراجيل
+            db: null,
+
+            async init() {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open(this.name, this.version);
+                    request.onerror = () => reject(request.error);
+                    request.onsuccess = () => {
+                        this.db = request.result;
+                        resolve();
+                    };
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        if (!db.objectStoreNames.contains(this.store)) {
+                            const store = db.createObjectStore(this.store, { keyPath: 'orderId' });
+                            store.createIndex('status', 'status', { unique: false });
+                            store.createIndex('timestamp', 'timestamp', { unique: false });
+                            store.createIndex('completedAt', 'completedAt', { unique: false });
+                        }
+                    };
+                });
+            },
+
+            async getAllOrders() {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction(this.store, 'readonly');
+                    const store = tx.objectStore(this.store);
+                    const request = store.getAll();
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            },
+
+            async putOrders(orders) {
+                const tx = this.db.transaction(this.store, 'readwrite');
+                const store = tx.objectStore(this.store);
+                for (const order of orders) {
+                    store.put(order);
+                }
+                return tx.complete;
+            },
+
+            async deleteOrder(orderId) {
+                const tx = this.db.transaction(this.store, 'readwrite');
+                const store = tx.objectStore(this.store);
+                store.delete(orderId);
+                return tx.complete;
+            },
+
+            async clearOldOrders(days = 7) {
+                const cutoff = new Date();
+                cutoff.setDate(cutoff.getDate() - days);
+                const tx = this.db.transaction(this.store, 'readwrite');
+                const store = tx.objectStore(this.store);
+                const index = store.index('completedAt');
+                const range = IDBKeyRange.upperBound(cutoff.toISOString());
+                const request = index.openCursor(range);
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        if (cursor.value.status === 'completed') {
+                            cursor.delete();
+                        }
+                        cursor.continue();
+                    }
+                };
+                return tx.complete;
+            }
+        };
+
+        // ======================== حالة التطبيق ========================
+        const KitchenState = {
+            active: false,
+            soundEnabled: true,
+            currentStatus: 'preparing',
+            orders: [],
+            lastOrderIds: new Set(),
+            popupActive: false,
+            currentAlertOrder: null,
+            timerInterval: null,
+            refreshInterval: null,
+            initialLoad: true,
+            isLoading: false,
+            retryCount: 0,
+            online: navigator.onLine,
+            orderElements: new Map(),
+            currentRefreshInterval: CONFIG.REFRESH_INTERVAL
+        };
+
+        const DOM = {
+            startup: document.getElementById('startup-screen'),
+            activateBtn: document.getElementById('activateBtn'),
+            mainContent: document.getElementById('main-content'),
+            ordersContainer: document.getElementById('ordersContainer'),
+            preparingCount: document.getElementById('preparingCount'),
+            completedCount: document.getElementById('completedCount'),
+            preparingBadge: document.getElementById('preparingBadge'),
+            completedBadge: document.getElementById('completedBadge'),
+            soundToggle: document.getElementById('soundToggle'),
+            refreshBtn: document.getElementById('refreshBtn'),
+            tabs: document.querySelectorAll('.kitchen-tab'),
+            notificationSound: document.getElementById('notificationSound'),
+            popupOverlay: document.getElementById('popupOverlay'),
+            closePopupBtn: document.getElementById('closePopupBtn'),
+            receiveBtn: document.getElementById('receiveOrderBtn'),
+            popupOrderId: document.getElementById('popupOrderId'),
+            popupTableNumber: document.getElementById('popupTableNumber'),
+            popupTime: document.getElementById('popupTime'),
+            popupTotal: document.getElementById('popupTotal'),
+            timerDisplay: document.getElementById('timerDisplay'),
+            progressFill: document.getElementById('progressFill')
+        };
+
+        // ======================== دوال مساعدة ========================
+        function extractNumber(value) {
+            if (value === null || value === undefined) return 0;
+            if (typeof value === 'number') return value;
+            const str = String(value).replace(/[^0-9.-]+/g, '');
+            const num = parseFloat(str);
+            return isNaN(num) ? 0 : num;
+        }
+
+        function calculateOrderTotal(order) {
+            if (!order) return 0;
+            if (Array.isArray(order.items) && order.items.length > 0) {
+                return order.items.reduce((sum, item) => {
+                    let price = 0, quantity = 0;
+                    if (typeof item === 'number') {
+                        price = item;
+                        quantity = 1;
+                    } else if (typeof item === 'object' && item !== null) {
+                        price = extractNumber(item.price || item.Price || item.unitPrice || item.cost || 0);
+                        quantity = extractNumber(item.quantity || item.Quantity || item.qty || 1);
+                    }
+                    return sum + (price * quantity);
+                }, 0);
+            }
+            return extractNumber(order.total);
+        }
+
+        // دالة تصفية أصناف الأراجيل
+        function isArageelItem(itemName) {
+            if (!itemName) return false;
+            const name = itemName.toString().toLowerCase().trim();
+            return ARAGEEL_KEYWORDS.some(keyword => name.includes(keyword.toLowerCase()));
+        }
+
+        // تطبيع وتصفية الطلبات بحيث تبقى فقط أصناف الأراجيل
+        function normalizeOrder(order) {
+            let rawItems = order.items || order.Items || order.orderItems || [];
+            return {
+                orderId: order.orderId || order.id || 'UNKNOWN',
+                timestamp: order.timestamp || order.date || order.time || new Date().toISOString(),
+                tableNumber: order.tableNumber || order.table || order.tableNo || '?',
+                notes: order.notes || order.specialNotes || '',
+                items: Array.isArray(rawItems) ? rawItems.map(item => {
+                    if (typeof item === 'string') {
+                        return { name: item, quantity: 1, price: 0 };
+                    } else if (typeof item === 'object' && item !== null) {
+                        const name = item.name || item.Name || item.title || item.product || 'صنف';
+                        const quantity = extractNumber(item.quantity || item.Quantity || item.qty || 1);
+                        const price = extractNumber(item.price || item.Price || item.unitPrice || item.cost || 0);
+                        return { name, quantity, price };
+                    }
+                    return { name: 'صنف', quantity: 1, price: 0 };
+                }) : [],
+                source: order.source || 'web',
+                status: order.status || 'preparing',
+                preparedAt: order.preparedAt || '',
+                completedAt: order.completedAt || ''
+            };
+        }
+
+        function filterOrders(orders) {
+            const normalized = orders.map(normalizeOrder);
+            return normalized
+                .map(order => ({
+                    ...order,
+                    items: order.items.filter(item => isArageelItem(item.name))
+                }))
+                .filter(order => order.items.length > 0);
+        }
+
+        // ======================== معالجة الطلبات والعرض ========================
+        async function processOrders(orders, options = {}) {
+            const filtered = filterOrders(orders);
+            const oldOrders = KitchenState.orders;
+            const oldIds = new Set(oldOrders.map(o => o.orderId));
+            
+            KitchenState.orders = filtered;
+            syncOrderCards(filtered);
+            updateStats();
+            
+            if (!options.initialLoad) {
+                const newOnes = filtered.filter(o => !oldIds.has(o.orderId) && o.status === 'preparing');
+                if (newOnes.length > 0) {
+                    showNewOrderPopup(newOnes[newOnes.length - 1]);
+                }
+            } else {
+                KitchenState.initialLoad = false;
+            }
+            
+            // حفظ في IndexedDB
+            try {
+                await DB.putOrders(filtered);
+            } catch (e) {
+                console.warn('فشل حفظ في IndexedDB، استخدام localStorage', e);
+                saveToLocalStorage(filtered);
+            }
+        }
+
+        function syncOrderCards(orders) {
+            const currentIds = new Set(KitchenState.orderElements.keys());
+            const newIds = new Set(orders.map(o => o.orderId));
+
+            for (let id of currentIds) {
+                if (!newIds.has(id)) {
+                    const element = KitchenState.orderElements.get(id);
+                    if (element && element.parentNode) {
+                        element.remove();
+                    }
+                    KitchenState.orderElements.delete(id);
+                }
+            }
+
+            orders.forEach(order => {
+                const existingElement = KitchenState.orderElements.get(order.orderId);
+                if (existingElement) {
+                    updateCardContent(existingElement, order);
+                    existingElement.dataset.status = order.status;
+                    existingElement.dataset.timestamp = order.timestamp;
+                    if (order.completedAt) existingElement.dataset.completedAt = order.completedAt;
+                } else {
+                    const newCard = createOrderCard(order);
+                    KitchenState.orderElements.set(order.orderId, newCard);
+                    DOM.ordersContainer.appendChild(newCard);
+                }
+            });
+
+            sortCardsByTime();
+            filterCardsByStatus(KitchenState.currentStatus);
+
+            if (KitchenState.orderElements.size === 0) {
+                showEmptyState();
+            }
+        }
+
+        function createOrderCard(order) {
+            const card = document.createElement('div');
+            card.className = 'order-card';
+            card.dataset.orderId = order.orderId;
+            card.dataset.timestamp = order.timestamp;
+            if (order.completedAt) card.dataset.completedAt = order.completedAt;
+            card.dataset.status = order.status;
+            fillCardContent(card, order);
+            return card;
+        }
+
+        function fillCardContent(card, order) {
+            const items = order.items || [];
+            const tableNumber = order.tableNumber || '?';
+            let timeStr = '-';
+            
+            if (order.timestamp) {
+                try {
+                    const time = new Date(order.timestamp);
+                    timeStr = time.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+                } catch (e) {
+                    timeStr = '-';
+                }
+            }
+            
+            const displayTotal = calculateOrderTotal(order).toFixed(2);
+            
+            card.innerHTML = `
+                <div class="order-header">
+                    <span class="order-id">${order.orderId || 'UNKNOWN'}</span>
+                    <span class="order-time">${timeStr}</span>
+                </div>
+                <div class="order-body">
+                    <div class="table-info">
+                        <div class="table-number-large">
+                            <i class="fas fa-chair"></i>
+                            ${tableNumber}
+                        </div>
+                    </div>
+                    
+                    <div class="order-items">
+                        ${items.map(item => {
+                            const price = extractNumber(item.price);
+                            const quantity = extractNumber(item.quantity);
+                            const itemTotal = (price * quantity).toFixed(2);
+                            return `
+                                <div class="order-item">
+                                    <div class="item-details">
+                                        <span class="item-name">${item.name || 'صنف'}</span>
+                                        <div class="item-price-info">
+                                            <span class="item-unit-price">${price.toFixed(2)} د.أ</span>
+                                            <span class="item-separator">|</span>
+                                            <span class="item-quantity">x${quantity}</span>
+                                        </div>
+                                    </div>
+                                    <span class="item-total">${itemTotal} د.أ</span>
+                                </div>
+                            `;
+                        }).join('')}
+                        
+                        <div class="order-total">
+                            <span>المجموع</span>
+                            <span>${displayTotal} د.أ</span>
+                        </div>
+                    </div>
+                    
+                    ${order.notes ? `
+                        <div class="order-notes">
+                            <i class="fas fa-sticky-note"></i>
+                            ${order.notes}
+                        </div>
+                    ` : ''}
+                    
+                    <span class="status-badge ${order.status === 'preparing' ? 'status-preparing' : 'status-completed'}">
+                        <i class="fas ${order.status === 'preparing' ? 'fa-smoking' : 'fa-check-circle'}"></i>
+                        ${order.status === 'preparing' ? 'قيد التحضير' : 'مكتمل'}
+                    </span>
+                </div>
+                
+                <div class="order-footer">
+                    ${order.status === 'preparing' ? `
+                        <button class="action-btn btn-done" onclick="window.completeOrder('${order.orderId}')">
+                            <i class="fas fa-check"></i> تم التحضير
+                        </button>
+                    ` : ''}
+                    <button class="action-btn btn-print" onclick="window.printOrder('${order.orderId}')">
+                        <i class="fas fa-print"></i> طباعة
+                    </button>
+                    ${order.status === 'completed' ? `
+                        <button class="action-btn btn-delete" onclick="window.deleteOrder('${order.orderId}')">
+                            <i class="fas fa-trash-alt"></i> حذف
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function updateCardContent(card, order) {
+            fillCardContent(card, order);
+        }
+
+        function sortCardsByTime() {
+            const cards = Array.from(DOM.ordersContainer.querySelectorAll('.order-card'));
+            cards.sort((a, b) => {
+                const statusA = a.dataset.status;
+                const statusB = b.dataset.status;
+                
+                let timeA, timeB;
+                timeA = statusA === 'completed' && a.dataset.completedAt ? new Date(a.dataset.completedAt).getTime() : new Date(a.dataset.timestamp).getTime();
+                timeB = statusB === 'completed' && b.dataset.completedAt ? new Date(b.dataset.completedAt).getTime() : new Date(b.dataset.timestamp).getTime();
+                
+                if (isNaN(timeA)) timeA = 0;
+                if (isNaN(timeB)) timeB = 0;
+                
+                return timeB - timeA;
+            });
+            cards.forEach(card => DOM.ordersContainer.appendChild(card));
+        }
+
+        function filterCardsByStatus(status) {
+            const cards = DOM.ordersContainer.querySelectorAll('.order-card');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (card.dataset.status === status) {
+                    card.classList.remove('hidden-by-tab');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden-by-tab');
+                }
+            });
+
+            const emptyState = DOM.ordersContainer.querySelector('.empty-state');
+            if (visibleCount === 0 && KitchenState.orderElements.size > 0) {
+                if (!emptyState) {
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.className = 'empty-state';
+                    emptyDiv.innerHTML = `
+                        <i class="fas fa-smoking"></i>
+                        <h3>لا توجد طلبات ${status === 'preparing' ? 'قيد التحضير' : 'مكتملة'}</h3>
+                        <p>سيتم عرض الطلبات الجديدة هنا</p>
+                    `;
+                    DOM.ordersContainer.appendChild(emptyDiv);
+                }
+            } else if (emptyState) {
+                emptyState.remove();
+            }
+        }
+
+        function showEmptyState() {
+            DOM.ordersContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-smoking"></i>
+                    <h3>لا توجد طلبات أراجيل</h3>
+                    <p>سيتم عرض الطلبات الجديدة هنا</p>
+                </div>
+            `;
+        }
+
+        function updateStats() {
+            const preparing = KitchenState.orders.filter(o => o.status === 'preparing').length;
+            const completed = KitchenState.orders.filter(o => o.status === 'completed').length;
+            
+            DOM.preparingCount.textContent = preparing;
+            DOM.completedCount.textContent = completed;
+            DOM.preparingBadge.textContent = preparing;
+            DOM.completedBadge.textContent = completed;
+        }
+
+        // ======================== التخزين المحلي الاحتياطي ========================
+        function saveToLocalStorage(orders) {
+            try {
+                localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify(orders));
+                localStorage.setItem(CONFIG.CACHE_KEY + '_timestamp', Date.now().toString());
+            } catch (error) {
+                console.error('خطأ في الحفظ إلى localStorage:', error);
+            }
+        }
+
+        function loadFromLocalStorage() {
+            try {
+                const orders = JSON.parse(localStorage.getItem(CONFIG.CACHE_KEY) || '[]');
+                if (orders.length > 0) {
+                    processOrders(orders, { initialLoad: true });
+                } else {
+                    showEmptyState();
+                }
+            } catch (error) {
+                console.error('خطأ في التحميل من localStorage:', error);
+            }
+        }
+
+        // ======================== الاتصال بالخادم ========================
+        async function loadOrdersWithRetry() {
+            if (!KitchenState.active || KitchenState.isLoading) return;
+            KitchenState.isLoading = true;
+            DOM.refreshBtn.innerHTML = '<i class="fas fa-spinner spinner"></i>';
+            
+            // تحديد آخر طابع زمني موجود
+            let lastSync = 0;
+            if (KitchenState.orders.length > 0) {
+                const timestamps = KitchenState.orders.map(o => new Date(o.timestamp).getTime());
+                lastSync = Math.max(...timestamps);
+            }
+            
+            try {
+                const url = `${CONFIG.API_URL}?action=getOrders&lastSync=${lastSync}&_=${Date.now()}`;
+                await fetchWithTimeout(url, { timeout: CONFIG.FETCH_TIMEOUT });
+                
+                KitchenState.currentRefreshInterval = CONFIG.REFRESH_INTERVAL;
+                KitchenState.retryCount = 0;
+            } catch (error) {
+                KitchenState.retryCount++;
+                if (KitchenState.retryCount <= CONFIG.MAX_RETRIES) {
+                    KitchenState.currentRefreshInterval = Math.min(
+                        CONFIG.REFRESH_INTERVAL * Math.pow(1.5, KitchenState.retryCount),
+                        CONFIG.MAX_REFRESH_INTERVAL
+                    );
+                } else {
+                    KitchenState.currentRefreshInterval = CONFIG.MAX_REFRESH_INTERVAL;
+                }
+                
+                if (KitchenState.retryCount === 1) {
+                    showNotification('⚠️ بطء في الاتصال، يتم عرض الطلبات المحفوظة', 'info');
+                }
+            } finally {
+                KitchenState.isLoading = false;
+                DOM.refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+            }
+        }
+
+        async function fetchWithTimeout(url, options = {}) {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), options.timeout);
+            
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    signal: controller.signal,
+                    mode: 'cors',
+                    headers: { 'Accept': 'application/json' }
+                });
+                clearTimeout(id);
+                if (!response.ok) throw new Error('Network response not ok');
+                
+                const data = await response.json();
+                if (data.success && data.orders) {
+                    await processOrders(data.orders);
+                } else {
+                    throw new Error('Invalid data format');
+                }
+            } catch (error) {
+                clearTimeout(id);
+                throw error;
+            }
+        }
+
+        async function updateOrderStatus(orderId, status) {
+            try {
+                const formData = new URLSearchParams();
+                formData.append('action', 'updateOrderStatus');
+                formData.append('orderId', orderId);
+                formData.append('status', status);
+                
+                fetch(CONFIG.API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                }).catch(e => console.log('فشل تحديث الحالة على الخادم'));
+            } catch (error) {
+                console.error('خطأ في تحديث حالة الطلب:', error);
+            }
+        }
+
+        // ======================== وظائف النوافذ المنبثقة والصوت ========================
+        function showNewOrderPopup(order) {
+            if (!KitchenState.active || KitchenState.popupActive) return;
+            
+            KitchenState.currentAlertOrder = order;
+            KitchenState.popupActive = true;
+            
+            DOM.popupOrderId.textContent = order.orderId || 'UNKNOWN';
+            DOM.popupTableNumber.textContent = order.tableNumber || '?';
+            
+            let timeStr = '-';
+            if (order.timestamp) {
+                try {
+                    const time = new Date(order.timestamp);
+                    timeStr = time.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+                } catch (e) {
+                    timeStr = '-';
+                }
+            }
+            DOM.popupTime.textContent = timeStr;
+            
+            const total = calculateOrderTotal(order).toFixed(2);
+            DOM.popupTotal.textContent = `${total} د.أ`;
+            
+            DOM.popupOverlay.classList.add('active');
+            playAlertSound();
+            startAlertTimer();
+        }
+
+        function playAlertSound() {
+            if (KitchenState.soundEnabled && DOM.notificationSound) {
+                DOM.notificationSound.loop = true;
+                DOM.notificationSound.volume = 0.5;
+                DOM.notificationSound.play().catch(e => {});
+            }
+        }
+
+        function stopAlertSound() {
+            if (DOM.notificationSound) {
+                DOM.notificationSound.pause();
+                DOM.notificationSound.currentTime = 0;
+                DOM.notificationSound.loop = false;
+            }
+        }
+
+        function startAlertTimer() {
+            const endTime = Date.now() + 60000; // دقيقة واحدة
+            
+            if (KitchenState.timerInterval) {
+                clearInterval(KitchenState.timerInterval);
+            }
+            
+            KitchenState.timerInterval = setInterval(() => {
+                const remaining = endTime - Date.now();
+                
+                if (remaining <= 0) {
+                    DOM.timerDisplay.textContent = '00:00';
+                    DOM.progressFill.style.width = '100%';
+                    return;
+                }
+                
+                const seconds = Math.floor(remaining / 1000);
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                
+                DOM.timerDisplay.textContent = `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+                
+                const progress = ((60000 - remaining) / 60000) * 100;
+                DOM.progressFill.style.width = `${progress}%`;
+            }, 100);
+        }
+
+        function closePopup() {
+            stopAlertSound();
+            
+            if (KitchenState.timerInterval) {
+                clearInterval(KitchenState.timerInterval);
+                KitchenState.timerInterval = null;
+            }
+            
+            DOM.popupOverlay.classList.remove('active');
+            KitchenState.popupActive = false;
+            KitchenState.currentAlertOrder = null;
+            
+            DOM.timerDisplay.textContent = '01:00';
+            DOM.progressFill.style.width = '0%';
+        }
+
+        // ======================== دوال الأحداث العامة ========================
+        window.completeOrder = async function(orderId) {
+            const order = KitchenState.orders.find(o => o.orderId === orderId);
+            if (!order) return;
+            
+            const now = new Date().toISOString();
+            order.status = 'completed';
+            order.completedAt = now;
+            
+            updateStats();
+            
+            const card = KitchenState.orderElements.get(orderId);
+            if (card) {
+                updateCardContent(card, order);
+                card.dataset.status = 'completed';
+                card.dataset.completedAt = now;
+                sortCardsByTime();
+                filterCardsByStatus(KitchenState.currentStatus);
+            }
+            
+            // حفظ في IndexedDB
+            try {
+                await DB.putOrders([order]);
+            } catch (e) {
+                console.warn('فشل حفظ التحديث في IndexedDB', e);
+                saveToLocalStorage(KitchenState.orders);
+            }
+            
+            updateOrderStatus(orderId, 'completed');
+            showNotification('✅ تم إكمال الطلب', 'success');
+        };
+
+        window.deleteOrder = async function(orderId) {
+            if (!confirm('هل أنت متأكد من حذف هذا الطلب؟')) return;
+            
+            KitchenState.orders = KitchenState.orders.filter(o => o.orderId !== orderId);
+            KitchenState.lastOrderIds.delete(orderId);
+            
+            const card = KitchenState.orderElements.get(orderId);
+            if (card) {
+                card.remove();
+                KitchenState.orderElements.delete(orderId);
+            }
+            
+            updateStats();
+            filterCardsByStatus(KitchenState.currentStatus);
+            
+            if (KitchenState.orderElements.size === 0) {
+                showEmptyState();
+            }
+            
+            // حذف من IndexedDB
+            try {
+                await DB.deleteOrder(orderId);
+            } catch (e) {
+                console.warn('فشل حذف من IndexedDB', e);
+            }
+            
+            // إرسال الحذف إلى الخادم
+            try {
+                const formData = new URLSearchParams();
+                formData.append('action', 'deleteOrder');
+                formData.append('orderId', orderId);
+                fetch(CONFIG.API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                }).catch(e => console.log('فشل حذف الطلب من الخادم'));
+                showNotification('🗑️ تم حذف الطلب', 'success');
+            } catch (error) {
+                showNotification('⚠️ تم الحذف محلياً، لكن فشل الاتصال بالخادم', 'error');
+            }
+        };
+
+        window.printOrder = function(orderId) {
+            const order = KitchenState.orders.find(o => o.orderId === orderId);
+            if (!order) return;
+            
+            const items = order.items || [];
+            const tableNumber = order.tableNumber || '?';
+            const total = calculateOrderTotal(order).toFixed(2);
+            let timeStr = '-';
+            
+            if (order.timestamp) {
+                try {
+                    const time = new Date(order.timestamp);
+                    timeStr = time.toLocaleString('ar-EG');
+                } catch (e) {
+                    timeStr = '-';
+                }
+            }
+            
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html dir="rtl">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>فاتورة أراجيل ${order.orderId}</title>
+                    <style>
+                        body { font-family: 'Cairo', sans-serif; padding: 20px; }
+                        .invoice { max-width: 400px; margin: 0 auto; border: 2px solid #2D5A27; padding: 20px; border-radius: 20px; }
+                        .header { text-align: center; margin-bottom: 20px; }
+                        .header i { font-size: 3em; color: #2D5A27; }
+                        h1 { color: #2D5A27; }
+                        .info { background: #F5E6D3; padding: 10px; border-radius: 10px; margin: 10px 0; }
+                        .table-number { font-size: 2em; font-weight: 900; color: #2D5A27; text-align: center; }
+                        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+                        th { background: #2D5A27; color: white; padding: 8px; }
+                        td { padding: 8px; border-bottom: 1px solid #ddd; }
+                        .total { font-size: 1.5em; font-weight: 900; color: #2D5A27; text-align: left; margin-top: 15px; }
+                        .footer { text-align: center; margin-top: 20px; color: #666; }
+                        .price-info { font-size: 0.8rem; color: #666; }
+                    </style>
+                </head>
+                <body>
+                    <div class="invoice">
+                        <div class="header">
+                            <i class="fas fa-smoking"></i>
+                            <h1>تل السنديان - الأراجيل</h1>
+                        </div>
+                        
+                        <div class="table-number">
+                            <i class="fas fa-chair"></i> طاولة رقم: ${tableNumber}
+                        </div>
+                        
+                        <div class="info">
+                            <p><strong>رقم الطلب:</strong> ${order.orderId}</p>
+                            <p><strong>الوقت:</strong> ${timeStr}</p>
+                        </div>
+                        
+                        <table>
+                            <tr>
+                                <th>الصنف</th>
+                                <th>سعر الوحدة</th>
+                                <th>الكمية</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                            ${items.map(item => {
+                                const price = extractNumber(item.price);
+                                const qty = extractNumber(item.quantity);
+                                const itemTotal = (price * qty).toFixed(2);
+                                return `
+                                    <tr>
+                                        <td>${item.name || 'صنف'}</td>
+                                        <td>${price.toFixed(2)} د.أ</td>
+                                        <td>${qty}</td>
+                                        <td>${itemTotal} د.أ</td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </table>
+                        
+                        <div class="total">
+                            المجموع: ${total} د.أ
+                        </div>
+                        
+                        <div class="footer">
+                            <p>شكراً لثقتكم 🚬</p>
+                            <p>نتمنى لكم أوقاتاً ممتعة</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            setTimeout(() => printWindow.print(), 500);
+        };
+
+        // ======================== التهيئة وبدء التشغيل ========================
+        async function initializeApp() {
+            try {
+                await DB.init();
+                const orders = await DB.getAllOrders();
+                processOrders(orders, { initialLoad: true });
+            } catch (error) {
+                console.error('فشل تهيئة IndexedDB، استخدام localStorage كاحتياطي', error);
+                loadFromLocalStorage(); // الرجوع للطريقة القديمة
+            }
+            
+            startAutoRefresh();
+            startCleanupTask();
+        }
+
+        function startAutoRefresh() {
+            if (KitchenState.refreshInterval) {
+                clearInterval(KitchenState.refreshInterval);
+            }
+            
+            KitchenState.refreshInterval = setInterval(() => {
+                if (KitchenState.active && !KitchenState.popupActive) {
+                    loadOrdersWithRetry();
+                }
+            }, KitchenState.currentRefreshInterval);
+        }
+
+        function startCleanupTask() {
+            setInterval(async () => {
+                try {
+                    await DB.clearOldOrders(CONFIG.OLD_DAYS_THRESHOLD);
+                    // تحديث القائمة المحلية بعد الحذف
+                    const orders = await DB.getAllOrders();
+                    processOrders(orders);
+                    console.log('تم تنظيف الطلبات القديمة');
+                } catch (error) {
+                    console.error('فشل تنظيف الطلبات القديمة', error);
+                }
+            }, CONFIG.CLEANUP_INTERVAL);
+        }
+
+        function playTestSound() {
+            if (DOM.notificationSound && KitchenState.soundEnabled) {
+                DOM.notificationSound.volume = 0.3;
+                DOM.notificationSound.play()
+                    .then(() => {
+                        DOM.notificationSound.pause();
+                        DOM.notificationSound.currentTime = 0;
+                    })
+                    .catch(e => console.log('تحتاج النقر أولاً لتشغيل الصوت'));
+            }
+        }
+
+        function handleOnline() {
+            KitchenState.online = true;
+            showNotification('📶 تم استعادة الاتصال بالإنترنت', 'success');
+            KitchenState.currentRefreshInterval = CONFIG.REFRESH_INTERVAL;
+            loadOrdersWithRetry();
+        }
+
+        function handleOffline() {
+            KitchenState.online = false;
+            showNotification('⚠️ انقطع الاتصال بالإنترنت، يتم عرض الطلبات المخزنة', 'error');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.background = type === 'success' ? '#2D5A27' : type === 'error' ? '#8B5A2B' : '#2D5A27';
+            notification.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i> ${message}`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // ======================== ربط الأحداث ========================
+        DOM.activateBtn.addEventListener('click', async () => {
+            KitchenState.active = true;
+            KitchenState.initialLoad = true;
+            DOM.startup.classList.add('hidden');
+            DOM.mainContent.style.opacity = '1';
+            
+            playTestSound();
+            
+            await initializeApp(); // تهيئة IndexedDB وجلب الطلبات
+            
+            window.addEventListener('online', handleOnline);
+            window.addEventListener('offline', handleOffline);
+            
+            showNotification('✅ تم تشغيل شاشة الأراجيل', 'success');
+        });
+
+        DOM.soundToggle.addEventListener('click', () => {
+            KitchenState.soundEnabled = !KitchenState.soundEnabled;
+            DOM.soundToggle.innerHTML = KitchenState.soundEnabled ? 
+                '<i class="fas fa-volume-up"></i>' : 
+                '<i class="fas fa-volume-mute"></i>';
+            
+            if (!KitchenState.soundEnabled) {
+                stopAlertSound();
+            }
+        });
+
+        DOM.refreshBtn.addEventListener('click', () => {
+            loadOrdersWithRetry();
+            showNotification('🔄 جاري تحديث الطلبات', 'info');
+        });
+
+        DOM.tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                DOM.tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const status = tab.dataset.status;
+                KitchenState.currentStatus = status;
+                filterCardsByStatus(status);
+            });
+        });
+
+        DOM.receiveBtn.addEventListener('click', () => {
+            if (!KitchenState.currentAlertOrder) return;
+            
+            closePopup();
+            
+            const orderId = KitchenState.currentAlertOrder.orderId;
+            const order = KitchenState.orders.find(o => o.orderId === orderId);
+            
+            if (order) {
+                // لا حاجة لتغيير الحالة، هو أصلاً preparing
+                updateStats();
+                
+                const card = KitchenState.orderElements.get(orderId);
+                if (card) {
+                    updateCardContent(card, order);
+                    card.dataset.status = 'preparing';
+                    delete card.dataset.completedAt;
+                    sortCardsByTime();
+                    filterCardsByStatus(KitchenState.currentStatus);
+                }
+                
+                // حفظ في IndexedDB
+                DB.putOrders([order]).catch(e => console.warn('فشل حفظ بعد الاستلام', e));
+            }
+            
+            showNotification('✅ تم استلام الطلب', 'success');
+        });
+
+        DOM.closePopupBtn.addEventListener('click', closePopup);
+
+        DOM.popupOverlay.addEventListener('click', (e) => {
+            if (e.target === DOM.popupOverlay) {
+                closePopup();
+            }
+        });
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === CONFIG.CACHE_KEY && KitchenState.active) {
+                console.log('تم تحديث الطلبات في نافذة أخرى');
+                loadFromLocalStorage();
+            }
+        });
+    </script>
+</body>
+</html>
