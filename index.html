@@ -1047,6 +1047,7 @@
         // ======================== الإعدادات المحسنة (تحديث كل 5 ثوان) ========================
         const CONFIG = {
             API_URL: 'https://script.google.com/macros/s/AKfycbzU7pp0Ul8KNDT4iEd7kGFxNrXYzX4B4zfdYANjE59ABvMq1vIKlmEM4gAOipY47Zeoiw/exec',
+            MENU_API_URL: 'https://script.google.com/macros/s/AKfycbyf1LnxXlGpllpyNeO9Gez1ah-DUSaVfTk3KhPDV8lDtN_Zga1GMZDaM387o0XWhIIW/exec', // رابط القائمة الجديد
             RESTAURANT: { name: 'تل السنديان', code: 'TSN' },
             REFRESH_INTERVAL: 5000,               // 5 ثوانٍ
             MAX_REFRESH_INTERVAL: 60000,           // دقيقة كحد أقصى عند الفشل
@@ -1055,20 +1056,11 @@
             FETCH_TIMEOUT: 8000,
             MAX_RETRIES: 3,
             CACHE_KEY: 'arageel_orders_backup',     // مفتاح مختلف عن الكاشير
+            ARAGEEL_CATEGORY_NAME: 'الاراجيل'        // اسم القسم الخاص بالأراجيل (يمكن تغييره)
         };
 
-        // ======================== قائمة أصناف الأراجيل الشاملة جداً ========================
-        const ARAGEEL_KEYWORDS = [
-            // الأساسيات
-            'أرغيلة', 'ارغيلة', 'ارجيله', 'أرجيله', 'أراجيل', 'اراجيل', 'ارجيل', 
-            'شيشة', 'شيشا', 'سيشا', 'شيشه',
-            // المكونات والأنواع
-            'معسل', 'معسلات', 'فحم', 'جوز', 'مبرد', 'ماسكه', 'ماسكة', 'بخور',
-            // إكسسوارات
-            'كولا', 'قلب', 'سيليكون', 'قرص', 'صفيحة', 'حريم', 'خرطوم',
-            // نكهات شائعة (للتأكيد)
-            'تفاحتين', 'بستكي', 'معدل', 'جنكل', 'كاكاو', 'لوز', 'كريمة'
-        ];
+        // ======================== قائمة الكلمات المفتاحية الديناميكية (سيتم ملؤها من القائمة) ========================
+        let ARAGEEL_KEYWORDS = []; // سيتم تعبئتها من API القائمة
 
         // ======================== IndexedDB Wrapper ========================
         const DB = {
@@ -1214,14 +1206,54 @@
             return extractNumber(order.total);
         }
 
-        // دالة تصفية أصناف الأراجيل
+        // دالة تصفية أصناف الأراجيل (تعتمد على ARAGEEL_KEYWORDS المحدثة)
         function isArageelItem(itemName) {
             if (!itemName) return false;
             const name = itemName.toString().toLowerCase().trim();
-            return ARAGEEL_KEYWORDS.some(keyword => name.includes(keyword.toLowerCase()));
+            // إذا كانت القائمة الديناميكية تحتوي على أسماء، نستخدمها
+            if (ARAGEEL_KEYWORDS.length > 0) {
+                return ARAGEEL_KEYWORDS.some(keyword => name.includes(keyword.toLowerCase()));
+            }
+            // وإلا نستخدم القائمة الافتراضية كاحتياطي
+            const defaultKeywords = [
+                'أرغيلة', 'ارغيلة', 'ارجيله', 'أرجيله', 'أراجيل', 'اراجيل', 'ارجيل', 
+                'شيشة', 'شيشا', 'سيشا', 'شيشه',
+                'معسل', 'معسلات', 'فحم', 'جوز', 'مبرد', 'ماسكه', 'ماسكة', 'بخور',
+                'كولا', 'قلب', 'سيليكون', 'قرص', 'صفيحة', 'حريم', 'خرطوم',
+                'تفاحتين', 'بستكي', 'معدل', 'جنكل', 'كاكاو', 'لوز', 'كريمة'
+            ];
+            return defaultKeywords.some(keyword => name.includes(keyword));
         }
 
-        // تطبيع وتصفية الطلبات بحيث تبقى فقط أصناف الأراجيل
+        // جلب قائمة المنتجات من API القائمة وتحديث ARAGEEL_KEYWORDS
+        async function loadMenuAndUpdateKeywords() {
+            try {
+                const response = await fetch(`${CONFIG.MENU_API_URL}?action=getMenuData&_=${Date.now()}`);
+                const data = await response.json();
+                if (data.success && data.categories && data.products) {
+                    // البحث عن القسم المطلوب
+                    const targetCategory = data.categories.find(cat => cat.name.trim() === CONFIG.ARAGEEL_CATEGORY_NAME);
+                    if (targetCategory) {
+                        const categoryId = targetCategory.id;
+                        // الحصول على جميع المنتجات في هذا القسم
+                        const categoryProducts = data.products.filter(p => p.categoryId === categoryId);
+                        // استخراج أسماء المنتجات (مع تنظيف بسيط)
+                        const productNames = categoryProducts.map(p => p.name.trim());
+                        // إزالة التكرار وتحديث القائمة
+                        ARAGEEL_KEYWORDS = [...new Set(productNames)];
+                        console.log(`تم تحميل ${ARAGEEL_KEYWORDS.length} كلمة مفتاحية من قسم "${CONFIG.ARAGEEL_CATEGORY_NAME}"`);
+                    } else {
+                        console.warn(`لم يتم العثور على قسم باسم "${CONFIG.ARAGEEL_CATEGORY_NAME}"، سيتم استخدام القائمة الافتراضية`);
+                    }
+                } else {
+                    throw new Error('Invalid menu data format');
+                }
+            } catch (error) {
+                console.error('فشل تحميل قائمة الأراجيل:', error);
+                // نترك القائمة الافتراضية كما هي
+            }
+        }
+
         function normalizeOrder(order) {
             let rawItems = order.items || order.Items || order.orderItems || [];
             return {
@@ -1863,6 +1895,9 @@
                 console.error('فشل تهيئة IndexedDB، استخدام localStorage كاحتياطي', error);
                 loadFromLocalStorage(); // الرجوع للطريقة القديمة
             }
+            
+            // تحميل قائمة الأراجيل من API القائمة
+            await loadMenuAndUpdateKeywords();
             
             startAutoRefresh();
             startCleanupTask();
